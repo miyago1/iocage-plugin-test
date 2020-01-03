@@ -32,7 +32,7 @@ EOF
 
 
 # Creating phpinfo.php
-echo "<?php phpinfo();" | tee /usr/local/www/nginx/phpinfo.php
+echo "<?php phpinfo(); ?>" | tee /usr/local/www/nginx/phpinfo.php
 
 # plugin_schema = 2 
 echo "Ett test!" > /root/PLUGIN_INFO
