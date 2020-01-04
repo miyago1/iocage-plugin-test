@@ -1,0 +1,2 @@
+https://github.com/Piwigo/piwigo-elegant.git
+c1d41fa3f741da8953e6e5ac046742ac28d334a3 2019-06-04 17:13:51 +0200

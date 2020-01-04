@@ -29,8 +29,6 @@ GRANT ALL PRIVILEGES ON ${DB}.* TO '${USER}'@'localhost';
 FLUSH PRIVILEGES;
 EOF
 
-
-
 # Creating phpinfo.php
 echo "<?php phpinfo(); ?>" | tee /usr/local/www/nginx/phpinfo.php
 
