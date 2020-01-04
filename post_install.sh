@@ -18,11 +18,12 @@ PASS = "Ra3map1"
 DB = "dbname"
 
 # Configure mysql
+service mysql-server start
 mysql -u root <<-EOF
 UPDATE mysql.user SET Password=PASSWORD('${PASS}') WHERE User='root';
 DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
 DELETE FROM mysql.user WHERE User='';
-DELETE FROM mysql.db WHERE Db='test' OR Db='test_%';
+DELETE FROM mysql.db WHERE Db='${DBNAME}' OR Db='test_%';
 CREATE USER '${USER}'@'localhost' IDENTIFIED BY '${PASS}';
 GRANT ALL PRIVILEGES ON *.* TO '${USER}'@'localhost' WITH GRANT OPTION;
 GRANT ALL PRIVILEGES ON ${DB}.* TO '${USER}'@'localhost';
@@ -31,6 +32,12 @@ EOF
 
 # Creating phpinfo.php
 echo "<?php phpinfo(); ?>" | tee /usr/local/www/nginx/phpinfo.php
+
+chown -R www:www /usr/local/www/piwigo/
+
+
+service nginx start
+service php-fpm start
 
 # plugin_schema = 2 
 echo "Ett test!" > /root/PLUGIN_INFO
